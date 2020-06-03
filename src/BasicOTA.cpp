@@ -42,7 +42,8 @@ SOFTWARE.
 
 void BasicOTA_Class::begin(const String &ssid,
                            const String &password,
-                           const String &hostname)
+                           const String &hostname,
+                           uint16_t otaTimeout)
 {
     ArduinoOTA.setHostname(hostname.c_str());
 
@@ -54,7 +55,7 @@ void BasicOTA_Class::begin(const String &ssid,
     while (WiFi.waitForConnectResult() != WL_CONNECTED)
     {
         Serial.println("Connection Failed! Rebooting...");
-        delay(5000);
+        delay(3000);
         ESP.restart();
     }
 
@@ -97,13 +98,47 @@ void BasicOTA_Class::begin(const String &ssid,
 
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
+
+    enable(otaTimeout);
+}
+
+//------------------------------------------------------------------------------
+
+void BasicOTA_Class::enable(uint16_t timeout)
+{
+    if (timeout)
+    {
+        Serial.println("OTA enabled");
+        _otaTimeout = timeout;
+        if (timeout > 1)
+        {
+            _otaTimeout *= 1000;
+            _otaTimeout += millis();
+        }
+    }
+    else
+    {
+        Serial.println("OTA disabled");
+        _otaTimeout = 0;
+    }
 }
 
 //------------------------------------------------------------------------------
 
 void BasicOTA_Class::handle()
 {
-    ArduinoOTA.handle();
+    if (_otaTimeout)
+    {
+        if (_otaTimeout == 1 ||
+            _otaTimeout > millis())
+        {
+            ArduinoOTA.handle();
+        }
+        else
+        {
+            enable(0);
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
