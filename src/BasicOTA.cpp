@@ -108,12 +108,17 @@ void BasicOTA_Class::enable(uint16_t timeout)
 {
     if (timeout)
     {
-        Serial.println("OTA enabled");
-        _otaTimeout = timeout;
-        if (timeout > 1)
+        if (timeout == 1)
         {
-            _otaTimeout *= 1000;
-            _otaTimeout += millis();
+            Serial.println("OTA enabled");
+            _otaTimeout = timeout;
+        }
+        else
+        {
+            Serial.print("OTA enabled for ");
+            Serial.print(timeout);
+            Serial.println("s");
+            _otaTimeout = timeout * 1000ul + millis();
         }
     }
     else
