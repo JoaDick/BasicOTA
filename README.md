@@ -28,6 +28,16 @@ Adding a timeout to BasicOTA.begin() will automatically disable OTA after that t
 This can be used as a security feature to prevent the device from unintended or rogue updates.
 OTA is enabled again after a reset.
 
+### BasicOTA_TelnetStream
+
+When developing with your device OTA you usually don't have access to the serial console anymore.
+As an alternative, you can use a telnet connection to send the messages over network.
+Use e.g. [PuTTY](https://www.putty.org/) as a replacement for the Serial Monitor.
+
+Note: This example uses the [TelnetStream](https://github.com/jandrassy/TelnetStream) library.
+Since that is not (yet) available via Arduino IDE's Library Manager, please download it from there as ZIP file and
+[install it manually](https://www.arduino.cc/en/Guide/Libraries#toc5).
+
 
 # Credits
 
