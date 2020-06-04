@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-Easy OTA update of ESP8266 or ESP32 for absolute beginners.
+Easy OTA update of ESP8266 or ESP32 for beginners.
 Adding a timeout to BasicOTA.begin() will automatically disable OTA after that
 time. This can be used as a security feature to prevent the device from
 unintended or rogue updates. OTA is enabled again after a reset.

@@ -29,7 +29,7 @@ SOFTWARE.
 
 //------------------------------------------------------------------------------
 
-/** Provide easy OTA support for absolute beginners.
+/** Provide easy OTA support for beginners.
  * Call BasicOTA.begin() in your sketch's setup() and BasicOTA.handle() in its
  * loop() - and your device is ready for over-the-air updates!
  * Supports ESP8266 and ESP32.
