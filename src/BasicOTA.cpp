@@ -33,7 +33,7 @@ SOFTWARE.
 #include <WiFi.h>
 #include <ESPmDNS.h>
 #else
-#error “This library only supports ESP8266 and ESP32.”
+#error "This library only supports ESP8266 and ESP32."
 #endif
 
 #include <ArduinoOTA.h>
